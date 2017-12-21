@@ -386,6 +386,10 @@ title-case@^2.1.0:
     no-case "^2.2.0"
     upper-case "^1.0.3"
 
+try-require@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/try-require/-/try-require-1.2.1.tgz#34489a2cac0c09c1cc10ed91ba011594d4333be2"
+
 uc-first-array@^1.0.0:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/uc-first-array/-/uc-first-array-1.1.7.tgz#3837dd42762c924facbd2c6ab7feb083855447c7"
