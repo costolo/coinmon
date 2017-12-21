@@ -36,6 +36,18 @@ To check the top 10 cryptocurrencies ranked by their market cap, simply enter
 $ coinmon
 ```
 
+## Personal Coin Value
+To display your current coin value in the table, create a file named .coinmon.json in your home directory of the format
+```
+{
+  "bitcoin": 1.23456789,
+  "ethereum": 1.2345679,
+  ...
+}
+```
+The keys come from the ID field present in the payload of Coin Market Cap's API.
+The top 100 IDs by market value [can be found here.](https://api.coinmarketcap.com/v1/ticker/?limit=100.json)
+
 ## Options
 
 You can use the `-c` (or `--convert`) with the fiat currency symbol to find in terms of another currency.
