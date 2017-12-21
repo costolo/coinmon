@@ -7,6 +7,7 @@ const Table = require('cli-table2')
 const colors = require('colors')
 const humanize = require('humanize-plus')
 const os = require('os')
+const coins = require(`${os.homedir()}/.coinmon.json`)
 
 const platform = os.platform() // linux, darwin, win32, sunos
 const supportEmoji = platform !== 'darwin'
@@ -46,7 +47,7 @@ const table = new Table({
     'right-mid': '-',
     'middle': '│'
   },
-  head: ['Rank', 'Coin', `Price (${convert})`, 'Change (24H)', 'Change (1H)', `Market Cap (${convert})`].map(title => title.yellow),
+  head: ['Rank', 'Coin', `Price (${convert})`, 'Your Value', 'Change (24H)', 'Change (1H)', `Market Cap (${convert})`].map(title => title.yellow),
   colWidths: [6, 14, 15, 15, 15, 20]
 })
 
@@ -81,10 +82,14 @@ axios.get(sourceUrl)
       const change1h = percentChange1h ? (percentChange1h > 0 ? textChange1h.green : textChange1h.red) : 'NA'
       const marketCap = record[`market_cap_${convert}`.toLowerCase()]
       const displayedMarketCap = humanizeIsEnabled ? humanize.compactInteger(marketCap, 3) : marketCap
+      const personalValue = coins[record.id]
+        ? `$${(coins[record.id] * record.price_usd).toFixed(2)}`
+        : '$0.00'
       return [
         record.rank,
         `${supportEmoji ? '💰  ' : ''}${record.symbol}`,
         record[`price_${convert}`.toLowerCase()],
+        personalValue,
         change24h,
         change1h,
         displayedMarketCap
