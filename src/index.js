@@ -47,7 +47,7 @@ const table = new Table({
     'right-mid': '-',
     'middle': '│'
   },
-  head: ['Rank', 'Coin', `Price (${convert})`, 'Your Value', 'Change (24H)', 'Change (1H)', `Market Cap (${convert})`].map(title => title.yellow),
+  head: ['Rank', 'Coin', `Price (${convert})`, 'Change (24H)', 'Change (1H)', `Market Cap (${convert})`, 'Your Value'].map(title => title.yellow),
   colWidths: [6, 14, 15, 15, 15, 20]
 })
 
@@ -89,10 +89,10 @@ axios.get(sourceUrl)
         record.rank,
         `${supportEmoji ? '💰  ' : ''}${record.symbol}`,
         record[`price_${convert}`.toLowerCase()],
-        personalValue,
         change24h,
         change1h,
-        displayedMarketCap
+        displayedMarketCap,
+        personalValue
       ]
     })
     .forEach(record => table.push(record))
